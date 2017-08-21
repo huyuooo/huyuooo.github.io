@@ -151,6 +151,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hibernate创建Configuration不同方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/21/hibernate创建Configuration不同方法/">hibernate创建Configuration</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/21/hibernate创建Configuration不同方法/" class="archive-article-date">
+  	<time datetime="2017-08-21T14:03:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Hibernate的核心接口一共有5个，分别为:Session、SessionFactory、Transaction、Query和 Configuration。这5个核心接口在任何开发中都会用到。通过这些接口，不仅可以对持久化对象进行存取，还能够进行事务控制。下面对这五的核心接口分别加以介绍。<br><br>　　<strong>·Session接口:</strong>Session接口负责执行被持久化对象的CRUD操作(CRUD的任务是完成与数据库的交流，包含了很多常见的SQL语句。)。但需要注意的是Session对象是非线程安全的。同时，Hibernate的session不同于JSP应用中的HttpSession。这里当使用session这个术语时，其实指的是Hibernate中的session，而以后会将HttpSesion对象称为用户session。<br><br>　　<strong>·SessionFactory接口:</strong>SessionFactroy接口负责初始化Hibernate。它充当数据存储源的代理，并负责创建Session对象。这里用到了工厂模式。需要注意的是SessionFactory并不是轻量级的，因为一般情况下，一个项目通常只需要一个SessionFactory就够，当需要操作多个数据库时，可以为每个数据库指定一个SessionFactory。<br><br>　　<strong>·Configuration接口:</strong>Configuration接口负责配置并启动Hibernate，创建SessionFactory对象。在Hibernate的启动的过程中，Configuration类的实例首先定位映射文档位置、读取配置，然后创建SessionFactory对象。<br><br>　　<strong>·Transaction接口:</strong>Transaction接口负责事务相关的操作。它是可选的，开发人员也可以设计编写自己的底层事务处理代码。<br><br>　　<strong>·Query和Criteria接口:</strong>Query和Criteria接口负责执行各种数据库查询。它可以使用HQL语言或SQL语句两种表达方式。<br><br><br>开发hibernate项目，创建Configuration是必不可少的一个环节。我在学习的过程中参考了不同的书籍以及网络上的教程，总结Configuration的创建方法如下：<br></p>
+<p><strong>1. 第一种方法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Configuration cfg=new Configuration();  </div><div class="line">cfg.configure(&quot;hibernate.cfg.xml&quot;);</div><div class="line">SessionFactory factory=cfg.buildSessionFactory();</div><div class="line">Session session=factory.openSession();</div><div class="line">Transaction t=session.beginTransaction();</div><div class="line">...</div><div class="line">...</div><div class="line">...</div><div class="line">t.commit();</div><div class="line">session.close();</div></pre></td></tr></table></figure></p>
+<p>如上创建方法，其中.congfigure()默认便加载hibernate.cfg.xml文件；最终可简化为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();</div><div class="line">Session session = sessionFactory.openSession();</div><div class="line">session.beginTransaction();</div><div class="line">...</div><div class="line">...</div><div class="line">...</div><div class="line">session.getTransaction().commit();</div><div class="line">session.close();</div><div class="line">sessionFactory.close();</div></pre></td></tr></table></figure></p>
+<p><strong>2. 第二种方法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure(&quot;hibernate.cfg.xml&quot;).build();</div><div class="line">SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();</div><div class="line">Session session = sessionFactory.openSession();</div><div class="line">Transaction t = session.beginTransaction();</div><div class="line">...</div><div class="line">...</div><div class="line">...</div><div class="line">t.commit();</div><div class="line">session.close();</div></pre></td></tr></table></figure></p>
+<p>一般推荐使用第一种方法简化后。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hibernate</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">J2EE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/21/hibernate创建Configuration不同方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-query.uniqueResult() 和 query.getSingleResult()" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
