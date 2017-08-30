@@ -6,19 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>搭建博客的一些问题 | HuY的博客</title>
+  <title>Markdown 图片排版 | HuY的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.域名绑定问题&amp;emsp;通过hexo新建博客后，可通过github域名登录；绑定自己购买的域名时，需要对域名进行解析，同时要在项目中新建CNAME文件，内容为自己的域名www.xxxxx.xxx。&amp;emsp;还需要注意一个问题，由于配置的CNAME没有在本地保存，所以每次从本地更新项目时，CNAME文件便会丢失，从域名访问不到网站。 解决方法: 在本地X:\hexo\source 路径下保存">
-<meta name="keywords" content="建站">
+  <meta name="description" content="hexo写博客一般使用的都是Markdown，之前写了一篇博文在图片排版遇到了一些问题，在此分享下一些图片排版的方法。Markdown写博文时，插入图片不能直接从本地上传，需要挂图片的链接地址才可以。我的方法是将本地图片上传至新浪微博相册，这样就可以得到图片的链接地址。 单张图片&amp;lt;div align=&amp;quot;center&amp;quot;&amp;gt; &amp;lt;img src=&amp;quot;图片地址&amp;">
+<meta name="keywords" content="Markdown">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建博客的一些问题">
-<meta property="og:url" content="http://yoursite.com/2017/07/17/搭建博客的一些问题/index.html">
+<meta property="og:title" content="Markdown 图片排版">
+<meta property="og:url" content="http://yoursite.com/2017/08/30/Markdown图片排版/index.html">
 <meta property="og:site_name" content="HuY的博客">
-<meta property="og:description" content="1.域名绑定问题&amp;emsp;通过hexo新建博客后，可通过github域名登录；绑定自己购买的域名时，需要对域名进行解析，同时要在项目中新建CNAME文件，内容为自己的域名www.xxxxx.xxx。&amp;emsp;还需要注意一个问题，由于配置的CNAME没有在本地保存，所以每次从本地更新项目时，CNAME文件便会丢失，从域名访问不到网站。 解决方法: 在本地X:\hexo\source 路径下保存">
-<meta property="og:updated_time" content="2017-07-17T14:04:59.879Z">
+<meta property="og:description" content="hexo写博客一般使用的都是Markdown，之前写了一篇博文在图片排版遇到了一些问题，在此分享下一些图片排版的方法。Markdown写博文时，插入图片不能直接从本地上传，需要挂图片的链接地址才可以。我的方法是将本地图片上传至新浪微博相册，这样就可以得到图片的链接地址。 单张图片&amp;lt;div align=&amp;quot;center&amp;quot;&amp;gt; &amp;lt;img src=&amp;quot;图片地址&amp;">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/b192da26ly1fix6sm3hmsj21kw16o1kx.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/b192da26ly1fix6sl52gvj21kw16otzr.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/b192da26ly1fix6sj1homj21kw16o4qp.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/b192da26ly1fix6si4xuvj21kw16o7sv.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/b192da26ly1fix6shb7c9j21kw16o7wh.jpg">
+<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/b192da26ly1fix6sg9xrgj21kw16o1kx.jpg">
+<meta property="og:updated_time" content="2017-08-30T03:05:14.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建博客的一些问题">
-<meta name="twitter:description" content="1.域名绑定问题&amp;emsp;通过hexo新建博客后，可通过github域名登录；绑定自己购买的域名时，需要对域名进行解析，同时要在项目中新建CNAME文件，内容为自己的域名www.xxxxx.xxx。&amp;emsp;还需要注意一个问题，由于配置的CNAME没有在本地保存，所以每次从本地更新项目时，CNAME文件便会丢失，从域名访问不到网站。 解决方法: 在本地X:\hexo\source 路径下保存">
+<meta name="twitter:title" content="Markdown 图片排版">
+<meta name="twitter:description" content="hexo写博客一般使用的都是Markdown，之前写了一篇博文在图片排版遇到了一些问题，在此分享下一些图片排版的方法。Markdown写博文时，插入图片不能直接从本地上传，需要挂图片的链接地址才可以。我的方法是将本地图片上传至新浪微博相册，这样就可以得到图片的链接地址。 单张图片&amp;lt;div align=&amp;quot;center&amp;quot;&amp;gt; &amp;lt;img src=&amp;quot;图片地址&amp;">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/b192da26ly1fix6sm3hmsj21kw16o1kx.jpg">
   
     <link rel="alternative" href="/atom.xml" title="HuY的博客" type="application/atom+xml">
   
@@ -154,27 +161,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-搭建博客的一些问题" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Markdown图片排版" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      搭建博客的一些问题
+      Markdown 图片排版
     </h1>
   
 
         
-        <a href="/2017/07/17/搭建博客的一些问题/" class="archive-article-date">
-  	<time datetime="2017-07-17T14:04:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-17</time>
+        <a href="/2017/08/30/Markdown图片排版/" class="archive-article-date">
+  	<time datetime="2017-08-30T02:43:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.域名绑定问题<br><br>&emsp;通过hexo新建博客后，可通过github域名登录；绑定自己购买的域名时，需要对域名进行解析，同时要在项目中新建CNAME文件，内容为自己的域名www.xxxxx.xxx。<br><br>&emsp;还需要注意一个问题，由于配置的CNAME没有在本地保存，所以每次从本地更新项目时，CNAME文件便会丢失，从域名访问不到网站。 解决方法: 在本地X:\hexo\source 路径下保存 CNAME文件，注意文件没有后缀。<br><br>2.MarkdownPad的使用<br><br>&emsp;写博文推荐大家使用MP，具体的使用教程很多。<br><br>3.hexo配置问题<br><br>&emsp;建站完成后，需要了解hexo的配置问题，这样才能紧接着下一步博文的撰写。常见的问题有：tag标签的添加，日期格式，百度统计和留言等。在这里推荐这个博客，里面有关于hexo的配置和使用<a href="http://www.zipperary.com/。" target="_blank" rel="external">http://www.zipperary.com/。</a></p>
+        <p>hexo写博客一般使用的都是Markdown，之前写了一篇博文在图片排版遇到了一些问题，在此分享下一些图片排版的方法。<br><br>Markdown写博文时，插入图片不能直接从本地上传，需要挂图片的链接地址才可以。我的方法是将本地图片上传至新浪微博相册，这样就可以得到图片的链接地址。</p>
+<h3 id="单张图片"><a href="#单张图片" class="headerlink" title="单张图片"></a>单张图片</h3><pre><code>&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;图片地址&quot; height=&quot;300px&quot; alt=&quot;图片说明&quot; &gt;
+&lt;/div&gt;
+</code></pre><p>通过更改align属性可以修改图片左对齐、居中或者右对齐；</p>
+<h3 id="两张张图片并排显示"><a href="#两张张图片并排显示" class="headerlink" title="两张张图片并排显示"></a>两张张图片并排显示</h3><pre><code>&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;图片地址&quot; height=&quot;300px&quot; alt=&quot;图片说明&quot; &gt;
+&lt;img src=&quot;图片地址&quot; height=&quot;300px&quot; alt=&quot;图片说明&quot; &gt;
+&lt;/div&gt;
+</code></pre><p>通过调整两张图片的高度和宽度可以将两张图片并排显示，同样修改align属性可以改变两张图片的对齐方式；<br><strong>另外注意一点：</strong>我遇倒一个情况是，两张图片在markdown中已经并排显示了，但提交到网站后确实没有并排显示。 </p>
+<h5 id="原因是因为："><a href="#原因是因为：" class="headerlink" title="原因是因为："></a>原因是因为：</h5><pre><code>&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;图片地址&quot; height=&quot;300px&quot; alt=&quot;图片说明&quot; &gt;&lt;img src=&quot;图片地址&quot; height=&quot;300px&quot; alt=&quot;图片说明&quot; &gt;    
+&lt;/div&gt;
+</code></pre><p>两张图片的标签分行了，网页识别不了。这样将两张图片的标签放在一行，挨着写就可以了。</p>
+<h3 id="多张图片并排显示"><a href="#多张图片并排显示" class="headerlink" title="多张图片并排显示"></a>多张图片并排显示</h3><p>同样多张图片和两张图片的方法类似，只要增加图片地址，注意排版就可以了。</p>
+<div align="center"><br><img src="http://wx2.sinaimg.cn/mw690/b192da26ly1fix6sm3hmsj21kw16o1kx.jpg" height="240px" alt="海淀区景色" align="center/"><img src="http://wx4.sinaimg.cn/mw690/b192da26ly1fix6sl52gvj21kw16otzr.jpg" height="240px" alt="西二旗软件园" align="center/"><br></div><br><br><div align="center">两张图片并排显示</div>
+
+<div align="center"><br><img src="http://wx3.sinaimg.cn/mw690/b192da26ly1fix6sj1homj21kw16o4qp.jpg" height="240px" alt="和府捞面" align="center/"><img src="http://wx4.sinaimg.cn/mw690/b192da26ly1fix6si4xuvj21kw16o7sv.jpg" height="240px" alt="和府捞面" align="center/"><br><img src="http://wx1.sinaimg.cn/mw690/b192da26ly1fix6shb7c9j21kw16o7wh.jpg" height="240px" alt="和府捞面" align="center/"><img src="http://wx4.sinaimg.cn/mw690/b192da26ly1fix6sg9xrgj21kw16o1kx.jpg" height="240px" alt="和府捞面" align="center/"><br></div><br><div align="center">四张图片两两并排显示</div>
+
+
 
       
 
@@ -209,7 +235,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">建站</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
         		</li>
       		
 		</ul>
@@ -265,7 +291,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/17/搭建博客的一些问题/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/30/Markdown图片排版/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -279,18 +305,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/10/保定之行/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          保定之行
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/07/17/博客开通/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">博客开通</div>
+    <a href="/2017/08/27/百望山 和府捞面/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">登百望山 捞和府面</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -320,7 +337,7 @@
   
 
   
-  <div id="SOHUCS" sid="搭建博客的一些问题" ></div> 
+  <div id="SOHUCS" sid="Markdown图片排版" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "true"; 
