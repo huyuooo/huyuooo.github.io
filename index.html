@@ -151,6 +151,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hql Criteria sql 不同查询方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/04/hql Criteria sql 不同查询方法/">hql Criteria sql不同查询方法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/04/hql Criteria sql 不同查询方法/" class="archive-article-date">
+  	<time datetime="2017-09-04T02:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-hql语句查询方法"><a href="#1-hql语句查询方法" class="headerlink" title="1. hql语句查询方法"></a>1. hql语句查询方法</h3><p>使用hql的时候，不需要在前面加 select * ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Query q =s.createQuery(&quot;from Product p where p.name like ?&quot;);</div><div class="line">q.setString(0, &quot;%&quot;+name+&quot;%&quot;);</div><div class="line">List&lt;Product&gt; ps= q.list();</div><div class="line">for (Product p : ps) &#123;</div><div class="line">  System.out.println(p.getName());</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>q.setString()定义查询条件，进行模糊查询。</p>
+<h3 id="2-Criteria语句查询方法"><a href="#2-Criteria语句查询方法" class="headerlink" title="2. Criteria语句查询方法"></a>2. Criteria语句查询方法</h3><p>与HQL和SQL的区别是Criteria 完全是面向对象的方式在进行数据查询，将不再看到有sql语句的痕迹。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Criteria c= s.createCriteria(Product.class);</div><div class="line">c.add(Restrictions.like(&quot;name&quot;, &quot;%&quot;+name+&quot;%&quot;));</div><div class="line">List&lt;Product&gt; ps = c.list();</div><div class="line">for (Product p : ps) &#123;</div><div class="line">  System.out.println(p.getName());</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="2-1-Criteria进行分页查询"><a href="#2-1-Criteria进行分页查询" class="headerlink" title="2.1 Criteria进行分页查询"></a>2.1 Criteria进行分页查询</h4><p>Hibernate使用Criteria 来进行分页查询<br>c.setFirstResult(2); 表示从第2条数据开始<br>c.setMaxResults(5); 表示一共查询5条数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Criteria c= s.createCriteria(Product.class);</div><div class="line">c.add(Restrictions.like(&quot;name&quot;, &quot;%&quot;+name+&quot;%&quot;));</div><div class="line">c.setFirstResult(2);</div><div class="line">c.setMaxResults(5);        </div><div class="line">List&lt;Product&gt; ps = c.list();</div><div class="line">for (Product p : ps) &#123;</div><div class="line">   System.out.println(p.getName());            </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3-sql语句查询方法"><a href="#3-sql语句查询方法" class="headerlink" title="3. sql语句查询方法"></a>3. sql语句查询方法</h3><p>Hibernate依然保留了对标准SQL语句的支持，在一些场合，比如多表联合查询，并且有分组统计函数的情况下，标准SQL语句依然是效率较高的一种选择。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">String sql = &quot;select * from product_ p where p.name like &apos;%&quot;+name+&quot;%&apos;&quot;;</div><div class="line">         </div><div class="line">Query q= s.createSQLQuery(sql);</div><div class="line">List&lt;Object[]&gt; list= q.list();</div><div class="line">for (Object[] os : list) &#123;</div><div class="line">  for (Object filed: os) &#123;</div><div class="line">     System.out.print(filed+&quot;\t&quot;);</div><div class="line">  &#125;</div><div class="line">  System.out.println();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hibernate</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/04/hql Criteria sql 不同查询方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-github使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -174,7 +252,7 @@
         <p>github是全球最大的同性交友网站，所以熟练使用github也是每个程序员的必备技能。<br></p>
 <h3 id="本地上传到github"><a href="#本地上传到github" class="headerlink" title="本地上传到github"></a>本地上传到github</h3><p>如果是新建文件的话，首先需要在github上创建一个仓库，便可以看到仓库的远程地址。在本地文件根目录下，右键进入git bash，初始化仓库，添加远程地址，上传文件，提交 便可以将本地文件上传到github。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git init                //初始化仓库</div><div class="line">git remote add origin https://github.com/....../......  //添加远程地址</div><div class="line">git add .               //添加所有文件</div><div class="line">git commit -m &quot;备注&quot;    //添加备注上传</div><div class="line">git push origin master //上传</div></pre></td></tr></table></figure></p>
 <h3 id="本地修改同步到github"><a href="#本地修改同步到github" class="headerlink" title="本地修改同步到github"></a>本地修改同步到github</h3><p>当本地仓库进行了添加文件和删除文件，需要同步到github上，执行以下操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .                 添加所有文件</div><div class="line">git commit -m &quot;备注&quot;     //添加备注上传</div><div class="line">git push origin master  //上传</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .                //添加所有文件</div><div class="line">git commit -m &quot;备注&quot;     //添加备注上传</div><div class="line">git push origin master  //上传</div></pre></td></tr></table></figure>
 <h3 id="github修改同步到本地"><a href="#github修改同步到本地" class="headerlink" title="github修改同步到本地"></a>github修改同步到本地</h3><p>当github远程仓库进行了添加文件和删除文件，需要同步到本地仓库，执行以下操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull --rebase origin master</div></pre></td></tr></table></figure></p>
 
       
@@ -880,80 +958,6 @@
 
 
   
-    <article id="post-博客开通" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/17/博客开通/">博客开通</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/17/博客开通/" class="archive-article-date">
-  	<time datetime="2017-07-17T13:24:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  个人网站成功搭建了，在今后的日子里会在这里记录自己技术和生活中的心路历程，共勉。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">建站</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/17/博客开通/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1054,15 +1058,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1074,11 +1070,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">建站</a>
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">建站</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
             
             <div class="clearfix"></div>
