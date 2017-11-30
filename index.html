@@ -151,6 +151,120 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-toString" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/30/toString/">toString()方法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/30/toString/" class="archive-article-date">
+  	<time datetime="2017-11-30T08:51:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="toString-方法"><a href="#toString-方法" class="headerlink" title="toString()方法"></a>toString()方法</h3><p>格式化输出对象，在pojo类中定义。以Product类为例，进行说明：</p>
+<pre><code>public class Product {
+
+    private int id;
+    private String name;
+    private double prize;
+
+    public int getId() {    
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public double getPrize() {
+        return prize;
+    }
+    public void setPrize(double prize) {
+        this.prize = prize;
+    }
+
+    @Override            //toString格式化对象
+    public String toString(){
+        return &quot;Product [id=&quot; + id + &quot;, name=&quot; + name + &quot;, prize=&quot; + prize + &quot;]&quot;;
+    }    
+}
+</code></pre><p>在测试类中定义Product对象：</p>
+<pre><code>Product p = new Product();
+
+p.setUId(5);
+p.setName(&quot;newProduct&quot;);
+p.setPrize(888.8);
+
+System.out.println(p);
+</code></pre><p>可直接按照定义的模板对p对象进行输出，不用在输出时繁琐的代用p.getId(),p.getName(),p.getPrize()等。如图所示为输出结果：</p>
+<pre><code>Product [id=5, name=newProduct, prize=888.8]
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">J2EE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/30/toString/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-开题后第一篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -274,120 +388,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/10/国家大剧院/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-toString" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/04/toString/">toString()方法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/04/toString/" class="archive-article-date">
-  	<time datetime="2017-09-04T02:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="toString-方法"><a href="#toString-方法" class="headerlink" title="toString()方法"></a>toString()方法</h3><p>格式化输出对象，在pojo类中定义。以Product类为例，进行说明：</p>
-<pre><code>public class Product {
-
-    private int id;
-    private String name;
-    private double prize;
-
-    public int getId() {    
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public double getPrize() {
-        return prize;
-    }
-    public void setPrize(double prize) {
-        this.prize = prize;
-    }
-
-    @Override            //toString格式化对象
-    public String toString(){
-        return &quot;Product [id=&quot; + id + &quot;, name=&quot; + name + &quot;, prize=&quot; + prize + &quot;]&quot;;
-    }    
-}
-</code></pre><p>在测试类中定义Product对象：</p>
-<pre><code>Product p = new Product();
-
-p.setUId(5);
-p.setName(&quot;newProduct&quot;);
-p.setPrize(888.8);
-
-System.out.println(p);
-</code></pre><p>可直接按照定义的模板对p对象进行输出，不用在输出时繁琐的代用p.getId(),p.getName(),p.getPrize()等。如图所示为输出结果：</p>
-<pre><code>Product [id=5, name=newProduct, prize=888.8]
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">J2EE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/04/toString/">展开全文 >></a>
         </p>
       
 
@@ -1097,11 +1097,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">

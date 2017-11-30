@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | HuY的博客</title>
+  <title>toString()方法 | HuY的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="toString()方法格式化输出对象，在pojo类中定义。以Product类为例，进行说明： public class Product {      private int id;     private String name;     private double prize;      public int getId() {             return id;     }">
+<meta name="keywords" content="J2EE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/07/14/hello-world/index.html">
+<meta property="og:title" content="toString()方法">
+<meta property="og:url" content="http://yoursite.com/2017/11/30/toString/index.html">
 <meta property="og:site_name" content="HuY的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:updated_time" content="2017-07-14T01:25:59.797Z">
+<meta property="og:description" content="toString()方法格式化输出对象，在pojo类中定义。以Product类为例，进行说明： public class Product {      private int id;     private String name;     private double prize;      public int getId() {             return id;     }">
+<meta property="og:updated_time" content="2017-11-30T08:51:55.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="toString()方法">
+<meta name="twitter:description" content="toString()方法格式化输出对象，在pojo类中定义。以Product类为例，进行说明： public class Product {      private int id;     private String name;     private double prize;      public int getId() {             return id;     }">
   
     <link rel="alternative" href="/atom.xml" title="HuY的博客" type="application/atom+xml">
   
@@ -153,36 +154,68 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-toString" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      toString()方法
     </h1>
   
 
         
-        <a href="/2017/07/14/hello-world/" class="archive-article-date">
-  	<time datetime="2017-07-14T01:25:59.796Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-14</time>
+        <a href="/2017/11/30/toString/" class="archive-article-date">
+  	<time datetime="2017-11-30T08:51:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h3 id="toString-方法"><a href="#toString-方法" class="headerlink" title="toString()方法"></a>toString()方法</h3><p>格式化输出对象，在pojo类中定义。以Product类为例，进行说明：</p>
+<pre><code>public class Product {
 
+    private int id;
+    private String name;
+    private double prize;
+
+    public int getId() {    
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public double getPrize() {
+        return prize;
+    }
+    public void setPrize(double prize) {
+        this.prize = prize;
+    }
+
+    @Override            //toString格式化对象
+    public String toString(){
+        return &quot;Product [id=&quot; + id + &quot;, name=&quot; + name + &quot;, prize=&quot; + prize + &quot;]&quot;;
+    }    
+}
+</code></pre><p>在测试类中定义Product对象：</p>
+<pre><code>Product p = new Product();
+
+p.setUId(5);
+p.setName(&quot;newProduct&quot;);
+p.setPrize(888.8);
+
+System.out.println(p);
+</code></pre><p>可直接按照定义的模板对p对象进行输出，不用在输出时繁琐的代用p.getId(),p.getName(),p.getPrize()等。如图所示为输出结果：</p>
+<pre><code>Product [id=5, name=newProduct, prize=888.8]
+</code></pre>
       
 
       
@@ -211,6 +244,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">J2EE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -261,7 +305,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/14/hello-world/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/30/toString/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,15 +319,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/07/17/博客开通/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          博客开通
-        
-      </div>
-    </a>
   
+    <a href="/2017/11/26/开题后第一篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">开题后</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -311,7 +351,7 @@
   
 
   
-  <div id="SOHUCS" sid="hello-world" ></div> 
+  <div id="SOHUCS" sid="toString" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "true"; 
