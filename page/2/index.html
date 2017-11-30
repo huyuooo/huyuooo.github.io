@@ -151,6 +151,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hibernate错误整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/14/hibernate错误整理/">hibernate错误整理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/14/hibernate错误整理/" class="archive-article-date">
+  	<time datetime="2017-08-14T09:38:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;最近在学习hibernate，参考教材使用的是李刚老师的《轻量级JavaEE 企业应用实战》；同时，参考<a href="http://www.yiibai.com/hibernate/hibernate-with-annotation.html" target="_blank" rel="external">易百教程</a>上的hibernate资料，进行一些实例练习。<br><br>&emsp;&emsp;在参考易百教程学习的同时发现了一些问题，可能是由于我版本的问题或者某些地方的疏忽，参考代码在我的电脑上跑的时候出现了很多错误。<br><br>&emsp;&emsp;主要出现以下几个错误：<br><br>&emsp;&emsp;<code>com/fasterxml/classmate/TypeResolver</code> <br><br>&emsp;&emsp;<code>no persistent classes found for query class: Select e from</code><br><br>&emsp;&emsp;主要问题出现在创建 <strong>ServiceRegistry</strong> 和 创建 <strong>SessionFactory</strong> 上，教程上使用了如下创建方法：<br><br>&emsp;&emsp;<code>ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure(“hibernate.cfg.xml”).build();</code><br><br>&emsp;&emsp;<code>SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();</code><br>&emsp;&emsp;问题主要出在<em>MetadataSources()</em>方法上，具体原因我也不太清楚；</p>
+<p>&emsp;&emsp;使用以下创建方法便可解决问题：<br><br>&emsp;&emsp;<strong>hibernate 4.2：</strong><br><br>&emsp;&emsp;<code>Configuration conf = new Configuration().configure();</code><br><br>&emsp;&emsp;<code>ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();</code><br>&emsp;&emsp;<code>SessionFactory sessionFactory = conf.buildSessionFactory(serviceRegistry);</code><br><br>&emsp;&emsp;<strong>hibernate 5.0：</strong><br><br>&emsp;&emsp;<code>Configuration conf = new Configuration().configure();</code><br><br>&emsp;&emsp;<code>StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();</code><br><br>&emsp;&emsp;<code>SessionFactory sessionFactory = conf.buildSessionFactory(serviceRegistry);</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hibernate</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">J2EE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/14/hibernate错误整理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-保定之行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -544,11 +623,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,15 +639,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">建站</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">J2EE</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">建站</a>
               </li>
             
             <div class="clearfix"></div>
