@@ -151,6 +151,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-query.uniqueResult() 和 query.getSingleResult()" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/query.uniqueResult() 和 query.getSingleResult()/">query.uniqueResult() 和 query.getSingleResult()</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/16/query.uniqueResult() 和 query.getSingleResult()/" class="archive-article-date">
+  	<time datetime="2017-08-16T02:43:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当我使用<em>query.getSingleResult()</em>返回实例时，提示有错，不知道什么原因。</p>
+<p><img src="http://img.blog.csdn.net/20170816103307329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHk2NzA2ODc4Mzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br><br><strong>按提示修改后还是有错</strong><br><img src="http://img.blog.csdn.net/20170816103340354?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHk2NzA2ODc4Mzc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"> <br></p>
+<p><strong>后来使用 query.uniqueResult() 方法解决问题</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public static Department getDepartment(Session session, String deptNo)&#123;</div><div class="line">		String sql = &quot;Select d from &quot; + Department.class.getName() + &quot; d &quot; + &quot; where d.deptNo = :deptNo &quot;;</div><div class="line">		Query query = session.createQuery(sql);</div><div class="line">		query.setParameter(&quot;deptNo&quot;, deptNo);</div><div class="line">		return (Department) query.uniqueResult();</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hibernate</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">J2EE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/16/query.uniqueResult() 和 query.getSingleResult()/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hibernate错误整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -639,15 +719,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">建站</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">J2EE</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">建站</a>
               </li>
             
             <div class="clearfix"></div>
