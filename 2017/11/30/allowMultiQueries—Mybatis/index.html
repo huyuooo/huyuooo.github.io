@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/9 | HuY的博客</title>
+  <title>allowMultiQueries 执行多条SQL语句 | HuY的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="HuY的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/09/index.html">
+  <meta name="description" content="allowMultiQueries在使用Mybatis时，写数据操作的方法时，一般为执行一条SQL语句，如下面代码所示为，Category数据表对应的数据增删改查方法。 &amp;lt;insert id=&amp;quot;addCategory&amp;quot; parameterType=&amp;quot;Category&amp;quot;&amp;gt;     insert into category_ ( name ) val">
+<meta name="keywords" content="Mybatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="allowMultiQueries 执行多条SQL语句">
+<meta property="og:url" content="http://yoursite.com/2017/11/30/allowMultiQueries—Mybatis/index.html">
 <meta property="og:site_name" content="HuY的博客">
+<meta property="og:description" content="allowMultiQueries在使用Mybatis时，写数据操作的方法时，一般为执行一条SQL语句，如下面代码所示为，Category数据表对应的数据增删改查方法。 &amp;lt;insert id=&amp;quot;addCategory&amp;quot; parameterType=&amp;quot;Category&amp;quot;&amp;gt;     insert into category_ ( name ) val">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/b192da26ly1fm0e7nm53yj20fy03gdg6.jpg">
+<meta property="og:updated_time" content="2017-11-30T12:50:03.233Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HuY的博客">
+<meta name="twitter:title" content="allowMultiQueries 执行多条SQL语句">
+<meta name="twitter:description" content="allowMultiQueries在使用Mybatis时，写数据操作的方法时，一般为执行一条SQL语句，如下面代码所示为，Category数据表对应的数据增删改查方法。 &amp;lt;insert id=&amp;quot;addCategory&amp;quot; parameterType=&amp;quot;Category&amp;quot;&amp;gt;     insert into category_ ( name ) val">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/b192da26ly1fm0e7nm53yj20fy03gdg6.jpg">
   
     <link rel="alternative" href="/atom.xml" title="HuY的博客" type="application/atom+xml">
   
@@ -149,174 +156,201 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-allowMultiQueries—Mybatis" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      allowMultiQueries 执行多条SQL语句
+    </h1>
+  
+
+        
+        <a href="/2017/11/30/allowMultiQueries—Mybatis/" class="archive-article-date">
+  	<time datetime="2017-11-30T12:25:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-30</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="allowMultiQueries"><a href="#allowMultiQueries" class="headerlink" title="allowMultiQueries"></a>allowMultiQueries</h3><p>在使用Mybatis时，写数据操作的方法时，一般为执行<strong>一条SQL</strong>语句，如下面代码所示为，Category数据表对应的数据增删改查方法。</p>
+<pre><code>&lt;insert id=&quot;addCategory&quot; parameterType=&quot;Category&quot;&gt;
+    insert into category_ ( name ) values (#{name}) 
+&lt;/insert&gt;
+
+&lt;delete id=&quot;deleteCategory&quot; &gt;                         
+    delete from category_ where id=#{id};                      
+&lt;/delete&gt;
+
+&lt;select id=&quot;getCategory&quot; parameterType=&quot;_int&quot; resultType=&quot;Category&quot;&gt;
+    select * from category_ where id=#{id}
+&lt;/select&gt;
+
+&lt;update id=&quot;updateCategory&quot; parameterType=&quot;Category&quot;&gt;
+    update category_ set name=#{name} where id=#{id}
+&lt;/update&gt;
+
+&lt;select id=&quot;listCategory&quot; resultType=&quot;Category&quot;&gt;
+    select * from category_
+&lt;/select&gt;
+</code></pre><p>但在<strong>一对多，多对一</strong>的情况下，存在一些问题。如：一个Category对应多个Product，当你删除Category时，同时也需要删除其包含的Product。如图下图所示，Product表中的cid外键映射Category表中的id。当我们删除category 1这一行数据时，希望同时也删除其对应的product a和product b。</p>
+<p><div align="center"><br><img src="http://wx3.sinaimg.cn/mw690/b192da26ly1fm0e7nm53yj20fy03gdg6.jpg" height="" alt="" align="center/"><br></div><br>因此，执行一个删除方法时，要对Category和Product<strong>两个表删除数据</strong>，执行<strong>两条SQL语句</strong>。如下代码所示，这两条删除语句的顺序也是很有讲究的，如果你添加了外键关系，那么先要删除外键中的数据，后删除主键中的数据。因为，主键被其他外键所引用时是无法删除的。这里，我们先执行product表中的删除，后执行category表中的删除：</p>
+<pre><code>&lt;delete id=&quot;deleteCategory&quot; &gt;                         
+    delete from product_ where cid=#{id}; 
+    delete from category_ where id=#{id};                      
+&lt;/delete&gt;
+</code></pre><p>当同时执行多条SQL语句的时候，需要在Mybatis配置文件中进行<strong>allowMultiQueries</strong>配置：</p>
+<pre><code>&lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/how2java?characterEncoding=UTF-8&amp;amp;allowMultiQueries=true&quot;/&gt;
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>+1s<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/10/国家大剧院/" class="archive-article-date">
-  	<time datetime="2017-09-10T09:00:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/10/国家大剧院/">国家大剧院—骆驼祥子</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/30/allowMultiQueries—Mybatis/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/04/hql Criteria sql 不同查询方法/" class="archive-article-date">
-  	<time datetime="2017-09-04T02:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/30/主键 外键 索引 /" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">主键 外键 索引</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/04/hql Criteria sql 不同查询方法/">hql Criteria sql不同查询方法</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/04/github使用/" class="archive-article-date">
-  	<time datetime="2017-09-04T01:18:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/04/github使用/">github使用</a>
-    </h1>
+  <div id="SOHUCS" sid="allowMultiQueries—Mybatis" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/04/MySQL错误整理/" class="archive-article-date">
-  	<time datetime="2017-09-04T01:03:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/04/MySQL错误整理/">MySQL错误整理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -342,8 +376,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
