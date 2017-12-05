@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>博客开通 | HuY的博客</title>
+  <title>Tomcat(8005,8080,8009)端口占用解决方法 | HuY的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人网站成功搭建了，在今后的日子里会在这里记录自己技术和生活中的心路历程，共勉。">
-<meta name="keywords" content="建站">
+  <meta name="description" content="启动Tomcat时经常会遇到服务器端口被占用：”Several ports (8005, 8080, 8009) required by Tomcat v6.0 Server at localhost are already in use. The server may already be running in another process, or a system process may b">
+<meta name="keywords" content="Tomcat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客开通">
-<meta property="og:url" content="http://yoursite.com/2017/07/17/博客开通/index.html">
+<meta property="og:title" content="Tomcat(8005,8080,8009)端口占用解决方法">
+<meta property="og:url" content="http://yoursite.com/2017/12/05/Tomcat(8005,8080,8009)/index.html">
 <meta property="og:site_name" content="HuY的博客">
-<meta property="og:description" content="个人网站成功搭建了，在今后的日子里会在这里记录自己技术和生活中的心路历程，共勉。">
-<meta property="og:updated_time" content="2017-07-17T13:27:48.994Z">
+<meta property="og:description" content="启动Tomcat时经常会遇到服务器端口被占用：”Several ports (8005, 8080, 8009) required by Tomcat v6.0 Server at localhost are already in use. The server may already be running in another process, or a system process may b">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/b192da26ly1fm5qjoi9y9j20a808wmzh.jpg">
+<meta property="og:updated_time" content="2017-12-05T03:37:57.080Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客开通">
-<meta name="twitter:description" content="个人网站成功搭建了，在今后的日子里会在这里记录自己技术和生活中的心路历程，共勉。">
+<meta name="twitter:title" content="Tomcat(8005,8080,8009)端口占用解决方法">
+<meta name="twitter:description" content="启动Tomcat时经常会遇到服务器端口被占用：”Several ports (8005, 8080, 8009) required by Tomcat v6.0 Server at localhost are already in use. The server may already be running in another process, or a system process may b">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/b192da26ly1fm5qjoi9y9j20a808wmzh.jpg">
   
     <link rel="alternative" href="/atom.xml" title="HuY的博客" type="application/atom+xml">
   
@@ -154,27 +156,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-博客开通" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Tomcat(8005,8080,8009)" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      博客开通
+      Tomcat(8005,8080,8009)端口占用解决方法
     </h1>
   
 
         
-        <a href="/2017/07/17/博客开通/" class="archive-article-date">
-  	<time datetime="2017-07-17T13:24:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-17</time>
+        <a href="/2017/12/05/Tomcat(8005,8080,8009)/" class="archive-article-date">
+  	<time datetime="2017-12-05T03:31:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  个人网站成功搭建了，在今后的日子里会在这里记录自己技术和生活中的心路历程，共勉。</p>
+        <p>启动Tomcat时经常会遇到服务器端口被占用：”Several ports (8005, 8080, 8009) required by Tomcat v6.0 Server at localhost are already in use. The server may already be running in another process, or a system process may be using the port. To start this server you will need to stop the other process or change the port number(s).”</p>
+<p><div align="center"><br><img src="http://wx2.sinaimg.cn/mw690/b192da26ly1fm5qjoi9y9j20a808wmzh.jpg" height="240px" alt="Tomcat错误提示" align="center/"></div></p>
+<h3 id="端口被占用"><a href="#端口被占用" class="headerlink" title="端口被占用"></a>端口被占用</h3><p>端口8005,8080,8009中有一个被占用，最常见的情况是，端口被<strong>javaw.exe程序</strong>占用。只需要在<strong>任务管理器</strong>中将javaw.exe程序结束掉即可。</p>
 
       
 
@@ -209,7 +213,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">建站</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
         		</li>
       		
 		</ul>
@@ -265,7 +269,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/17/博客开通/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/12/05/Tomcat(8005,8080,8009)/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -279,18 +283,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/07/17/搭建博客的一些问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          搭建博客的一些问题
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/07/14/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2017/11/30/allowMultiQueries—Mybatis/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">allowMultiQueries 执行多条SQL语句</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -320,7 +315,7 @@
   
 
   
-  <div id="SOHUCS" sid="博客开通" ></div> 
+  <div id="SOHUCS" sid="Tomcat(8005,8080,8009)" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "true"; 
