@@ -151,6 +151,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Lintode 2 阶乘尾数零" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/28/Lintode 2 阶乘尾数零/">LintCode 第二题 计算阶乘结果尾部的零</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/28/Lintode 2 阶乘尾数零/" class="archive-article-date">
+  	<time datetime="2018-02-28T13:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="解法1-硬算（失败）"><a href="#解法1-硬算（失败）" class="headerlink" title="解法1 硬算（失败）"></a>解法1 硬算（失败）</h3><p>判断一个数的尾数有多少个零，显然最笨的方法就是依次除以10,100,1000…取余，只要余数为0，则尾部零的的个数加一，直到不为0循环跳出。如果这样计算的话显然与题目”阶乘”不大相符，而且如果阶乘数大的话，会无法存储。</p>
+<h3 id="解法2-分析”5-25-125-…”出现的次数"><a href="#解法2-分析”5-25-125-…”出现的次数" class="headerlink" title="解法2 分析”5 25 125 …”出现的次数"></a>解法2 分析”5 25 125 …”出现的次数</h3><p>参考链接：<a href="http://blog.csdn.net/zyh2525246/article/details/53697136" target="_blank" rel="external">http://blog.csdn.net/zyh2525246/article/details/53697136</a> <br><br>具体分析可以见参考链接，阶乘尾数零的个数为5,25,125..倍数个数的和。<br><br>如果是求2016！后面0的个数呢？<br><br>5的倍数个数为：  2016/5 = 403个<br><br>25的倍数个数为：  403/5 = 80个 <br><br>125的倍数的个数为：<br><br>80/5 = 16个<br><br>625的倍数的个数为： 16/5 = 3个。<br><br>所以可以得出2016！后面0的个数为：403+80+16+3 = 502个.<br><br>实现代码如下：</p>
+<pre><code>public class Solution {
+    /*
+     * @param n: An integer
+     * @return: An integer, denote the number of trailing zeros in n!
+     */
+    public long trailingZeros(long n) {
+        // write your code here, try to do it without arithmetic operators.
+
+        long result = 0;
+        while(n &gt; 0) {
+            result += n / 5;
+            n /= 5;
+        }
+        return result;
+    }
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">刷题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/28/Lintode 2 阶乘尾数零/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Tomcat_Could not publich server" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -903,86 +994,6 @@ System.out.println(p);
 
 
   
-    <article id="post-MySQL错误整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/04/MySQL错误整理/">MySQL错误整理</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/04/MySQL错误整理/" class="archive-article-date">
-  	<time datetime="2017-09-04T01:03:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="ERROR-1213-40001"><a href="#ERROR-1213-40001" class="headerlink" title="ERROR 1213(40001)"></a>ERROR 1213(40001)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction</div></pre></td></tr></table></figure>
-<p>mysql出现了<strong>锁死</strong>问题，操作修改数据库表时出现报错，说明还有程序占用着数据库表，无法修改。可以查看下编译器是不是还在调试、占用着数据库表。</p>
-<h4 id="Field-‘id’-doesn’t-have-a-default-value"><a href="#Field-‘id’-doesn’t-have-a-default-value" class="headerlink" title="Field ‘id’ doesn’t have a default value"></a>Field ‘id’ doesn’t have a default value</h4><p>出现类似报错的时候可以试试以下几种问题：<br><br><strong>方法一：</strong><br><br>　在数据库中对报错的字段设置默认值， 整数：0 ，字符串：设为NULL。另外，如果是hibernate中，还要设置主键为自增类型。<br><br><strong>方法二：</strong><br><br>　MYSQL安装目录—&gt;搜索打开my.ini，查找</p>
-<pre><code>sql-mode=&quot;STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&quot;
-</code></pre><p>修改为 </p>
-<pre><code>sql-mode=&quot;NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&quot;
-</code></pre><p>然后重启MYSQL 。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/04/MySQL错误整理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -997,7 +1008,7 @@ System.out.println(p);
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 HuY
+    		&copy; 2018 HuY
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1083,7 +1094,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">刷题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1099,7 +1110,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1108,6 +1119,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">J2EE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
               <li class="article-tag-list-item">

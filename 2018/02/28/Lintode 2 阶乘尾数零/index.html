@@ -6,23 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>主键 外键 索引 | HuY的博客</title>
+  <title>LintCode 第二题 计算阶乘结果尾部的零 | HuY的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="主键是一个数据库表中的唯一标识，想必都比较了解。外键和索引作为表与表之间的联系枢纽，大家对此褒贬不一，很多人已弃用外键和索引，而是在代码层面进行表与表之间的关联。 主键(primary key)主键能够唯一标识表中某一行的属性或属性组。一个表只能有一个主键，但可以有多个候选索引。主键常常与外键构成参照完整性约束，防止出现数据不一致。主键可以保证记录的唯一和主键域非空，数据库管理系统对于主键自动生成">
-<meta name="keywords" content="MySQL">
+  <meta name="description" content="解法1 硬算（失败）判断一个数的尾数有多少个零，显然最笨的方法就是依次除以10,100,1000…取余，只要余数为0，则尾部零的的个数加一，直到不为0循环跳出。如果这样计算的话显然与题目”阶乘”不大相符，而且如果阶乘数大的话，会无法存储。 解法2 分析”5 25 125 …”出现的次数参考链接：http://blog.csdn.net/zyh2525246/article/details/5369">
+<meta name="keywords" content="刷题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="主键 外键 索引">
-<meta property="og:url" content="http://yoursite.com/2017/11/30/主键 外键 索引 /index.html">
+<meta property="og:title" content="LintCode 第二题 计算阶乘结果尾部的零">
+<meta property="og:url" content="http://yoursite.com/2018/02/28/Lintode 2 阶乘尾数零/index.html">
 <meta property="og:site_name" content="HuY的博客">
-<meta property="og:description" content="主键是一个数据库表中的唯一标识，想必都比较了解。外键和索引作为表与表之间的联系枢纽，大家对此褒贬不一，很多人已弃用外键和索引，而是在代码层面进行表与表之间的关联。 主键(primary key)主键能够唯一标识表中某一行的属性或属性组。一个表只能有一个主键，但可以有多个候选索引。主键常常与外键构成参照完整性约束，防止出现数据不一致。主键可以保证记录的唯一和主键域非空，数据库管理系统对于主键自动生成">
-<meta property="og:image" content="http://wx4.sinaimg.cn/mw690/b192da26ly1fm092vul2yj20im02x3yd.jpg">
-<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/b192da26ly1fm09329zmrj20j8049dfr.jpg">
-<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/b192da26ly1fm0cohcrfjj20mt02c0so.jpg">
-<meta property="og:updated_time" content="2017-11-30T11:57:55.600Z">
+<meta property="og:description" content="解法1 硬算（失败）判断一个数的尾数有多少个零，显然最笨的方法就是依次除以10,100,1000…取余，只要余数为0，则尾部零的的个数加一，直到不为0循环跳出。如果这样计算的话显然与题目”阶乘”不大相符，而且如果阶乘数大的话，会无法存储。 解法2 分析”5 25 125 …”出现的次数参考链接：http://blog.csdn.net/zyh2525246/article/details/5369">
+<meta property="og:updated_time" content="2018-02-28T13:30:25.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="主键 外键 索引">
-<meta name="twitter:description" content="主键是一个数据库表中的唯一标识，想必都比较了解。外键和索引作为表与表之间的联系枢纽，大家对此褒贬不一，很多人已弃用外键和索引，而是在代码层面进行表与表之间的关联。 主键(primary key)主键能够唯一标识表中某一行的属性或属性组。一个表只能有一个主键，但可以有多个候选索引。主键常常与外键构成参照完整性约束，防止出现数据不一致。主键可以保证记录的唯一和主键域非空，数据库管理系统对于主键自动生成">
-<meta name="twitter:image" content="http://wx4.sinaimg.cn/mw690/b192da26ly1fm092vul2yj20im02x3yd.jpg">
+<meta name="twitter:title" content="LintCode 第二题 计算阶乘结果尾部的零">
+<meta name="twitter:description" content="解法1 硬算（失败）判断一个数的尾数有多少个零，显然最笨的方法就是依次除以10,100,1000…取余，只要余数为0，则尾部零的的个数加一，直到不为0循环跳出。如果这样计算的话显然与题目”阶乘”不大相符，而且如果阶乘数大的话，会无法存储。 解法2 分析”5 25 125 …”出现的次数参考链接：http://blog.csdn.net/zyh2525246/article/details/5369">
   
     <link rel="alternative" href="/atom.xml" title="HuY的博客" type="application/atom+xml">
   
@@ -158,33 +154,45 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-主键 外键 索引 " class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Lintode 2 阶乘尾数零" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      主键 外键 索引
+      LintCode 第二题 计算阶乘结果尾部的零
     </h1>
   
 
         
-        <a href="/2017/11/30/主键 外键 索引 /" class="archive-article-date">
-  	<time datetime="2017-11-30T09:10:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-30</time>
+        <a href="/2018/02/28/Lintode 2 阶乘尾数零/" class="archive-article-date">
+  	<time datetime="2018-02-28T13:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>主键是一个数据库表中的唯一标识，想必都比较了解。外键和索引作为表与表之间的联系枢纽，大家对此褒贬不一，很多人已弃用外键和索引，而是在代码层面进行表与表之间的关联。</p>
-<h3 id="主键-primary-key"><a href="#主键-primary-key" class="headerlink" title="主键(primary key)"></a>主键(primary key)</h3><p>主键能够<strong>唯一标识</strong>表中某一行的属性或属性组。一个表只能有<strong>一个主键</strong>，但可以有多个候选索引。主键常常与外键构成参照完整性约束，防止出现数据不一致。主键可以保证记录的唯一和主键域非空，数据库管理系统对于主键自动生成唯一索引，所以主键也是一个特殊索引。</p>
-<h3 id="外键-foreign-key"><a href="#外键-foreign-key" class="headerlink" title="外键(foreign key)"></a>外键(foreign key)</h3><p>外键用于建立和加强<strong>两个表</strong>数据之间的链接的一列或多列。外键约束主要用来维护两个表之间<strong>数据的一致</strong>性。一个表的外键是另一表的主键，外键将两个表联系起来。一般情况下，需要删除一张表中的主键必须首先要确保其他表中没有相同外键（即该表中的主键没有一个外键和它相关联，没有用它作为外键）。</p>
-<h3 id="索引-index"><a href="#索引-index" class="headerlink" title="索引(index)"></a>索引(index)</h3><p>索引是用来<strong>快速地寻找</strong>那些具有特定值的记录。主要是为了检索的方便，是为了加快访问速度，按一定的规则创建的，一般起到排序作用。所谓唯一索引，这种索引和前面的“普通索引”基本相同，但有一个区别：索引列的所有值都只能出现一次，即必须唯一。<br></p>
-<p>以MySQL数据库两个表为例，建立外键和索引：<br><br><strong>Category种类</strong> 和 <strong>Product产品</strong>，之间的关系为一对多，一个种类包含多个产品。<br>分别创建category<em> 和product</em> 两个表。如下图所示。其中Prodduct表中的cid字段为其外键，映射Category表中的id字段。</p>
-<p><div align="center"><br><img src="http://wx4.sinaimg.cn/mw690/b192da26ly1fm092vul2yj20im02x3yd.jpg" height="" alt="Category_"><img src="http://wx2.sinaimg.cn/mw690/b192da26ly1fm09329zmrj20j8049dfr.jpg" height="" alt="Product_"><br></div><br>建立外键关系可用过SQL语句，也可以通过在手动添加，这里已Navicat for MySQL为例，为Prodduct表手动添加外键cid字段，映射Category表中的id字段。<br><img src="http://wx3.sinaimg.cn/mw690/b192da26ly1fm0cohcrfjj20mt02c0so.jpg" height="" alt="外键"><br><br>如图所示，设计Product表，增加外键。首先，一定要确保表的引擎为<strong>InnoDB</strong>类型，之前添加外键老是添加不成功，也没有报错，后来发现表的引擎是<strong>MyISAM</strong>类型。<br><br>添加外键会自动生成对应索引，所以直接添加外键即可。栏位为Product表中外键字段；参考数据库和参考栏位为Category表中映射的主键； 删除时和更新时为主键所在字段删除和更新后，外键的响应，STE NULL为置空，CASCADE为跟随变化。</p>
+        <h3 id="解法1-硬算（失败）"><a href="#解法1-硬算（失败）" class="headerlink" title="解法1 硬算（失败）"></a>解法1 硬算（失败）</h3><p>判断一个数的尾数有多少个零，显然最笨的方法就是依次除以10,100,1000…取余，只要余数为0，则尾部零的的个数加一，直到不为0循环跳出。如果这样计算的话显然与题目”阶乘”不大相符，而且如果阶乘数大的话，会无法存储。</p>
+<h3 id="解法2-分析”5-25-125-…”出现的次数"><a href="#解法2-分析”5-25-125-…”出现的次数" class="headerlink" title="解法2 分析”5 25 125 …”出现的次数"></a>解法2 分析”5 25 125 …”出现的次数</h3><p>参考链接：<a href="http://blog.csdn.net/zyh2525246/article/details/53697136" target="_blank" rel="external">http://blog.csdn.net/zyh2525246/article/details/53697136</a> <br><br>具体分析可以见参考链接，阶乘尾数零的个数为5,25,125..倍数个数的和。<br><br>如果是求2016！后面0的个数呢？<br><br>5的倍数个数为：  2016/5 = 403个<br><br>25的倍数个数为：  403/5 = 80个 <br><br>125的倍数的个数为：<br><br>80/5 = 16个<br><br>625的倍数的个数为： 16/5 = 3个。<br><br>所以可以得出2016！后面0的个数为：403+80+16+3 = 502个.<br><br>实现代码如下：</p>
+<pre><code>public class Solution {
+    /*
+     * @param n: An integer
+     * @return: An integer, denote the number of trailing zeros in n!
+     */
+    public long trailingZeros(long n) {
+        // write your code here, try to do it without arithmetic operators.
 
+        long result = 0;
+        while(n &gt; 0) {
+            result += n / 5;
+            n /= 5;
+        }
+        return result;
+    }
+}
+</code></pre>
       
 
       
@@ -218,7 +226,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">刷题</a>
         		</li>
       		
 		</ul>
@@ -274,7 +282,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/30/主键 外键 索引 /" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/02/28/Lintode 2 阶乘尾数零/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -288,18 +296,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/30/allowMultiQueries—Mybatis/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          allowMultiQueries 执行多条SQL语句
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/30/toString/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">toString()方法</div>
+    <a href="/2017/12/05/Tomcat_Could not publich server/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Could not publish server configuration for Tomcat v7.0 Server at localhost. Multiple Contexts have a path of &quot;&quot;</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -329,7 +328,7 @@
   
 
   
-  <div id="SOHUCS" sid="主键 外键 索引 " ></div> 
+  <div id="SOHUCS" sid="Lintode 2 阶乘尾数零" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "true"; 
