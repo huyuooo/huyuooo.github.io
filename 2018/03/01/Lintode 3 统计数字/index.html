@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>博客开通 | HuY的博客</title>
+  <title>LintCode 第三题 统计数字 | HuY的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人网站成功搭建了，在今后的日子里会在这里记录自己技术和生活中的心路历程，共勉。">
-<meta name="keywords" content="建站">
+  <meta name="description" content="问题描述计算数字k在0到n中的出现的次数，k可能是0~9的一个值。例如n=12，k=1，在 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]，我们发现1出现了5次 (1, 10, 11, 12) 解法这道题方法很简单，循环一组数，将每个数分解成位（个，十，百位…），然后与目标数字进行对比统计。代码如下： public class Solution {     /">
+<meta name="keywords" content="刷题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客开通">
-<meta property="og:url" content="http://yoursite.com/2017/07/17/博客开通/index.html">
+<meta property="og:title" content="LintCode 第三题 统计数字">
+<meta property="og:url" content="http://yoursite.com/2018/03/01/Lintode 3 统计数字/index.html">
 <meta property="og:site_name" content="HuY的博客">
-<meta property="og:description" content="个人网站成功搭建了，在今后的日子里会在这里记录自己技术和生活中的心路历程，共勉。">
-<meta property="og:updated_time" content="2017-07-17T13:27:48.994Z">
+<meta property="og:description" content="问题描述计算数字k在0到n中的出现的次数，k可能是0~9的一个值。例如n=12，k=1，在 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]，我们发现1出现了5次 (1, 10, 11, 12) 解法这道题方法很简单，循环一组数，将每个数分解成位（个，十，百位…），然后与目标数字进行对比统计。代码如下： public class Solution {     /">
+<meta property="og:updated_time" content="2018-03-01T12:37:38.469Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客开通">
-<meta name="twitter:description" content="个人网站成功搭建了，在今后的日子里会在这里记录自己技术和生活中的心路历程，共勉。">
+<meta name="twitter:title" content="LintCode 第三题 统计数字">
+<meta name="twitter:description" content="问题描述计算数字k在0到n中的出现的次数，k可能是0~9的一个值。例如n=12，k=1，在 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]，我们发现1出现了5次 (1, 10, 11, 12) 解法这道题方法很简单，循环一组数，将每个数分解成位（个，十，百位…），然后与目标数字进行对比统计。代码如下： public class Solution {     /">
   
     <link rel="alternative" href="/atom.xml" title="HuY的博客" type="application/atom+xml">
   
@@ -154,28 +154,57 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-博客开通" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Lintode 3 统计数字" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      博客开通
+      LintCode 第三题 统计数字
     </h1>
   
 
         
-        <a href="/2017/07/17/博客开通/" class="archive-article-date">
-  	<time datetime="2017-07-17T13:24:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-17</time>
+        <a href="/2018/03/01/Lintode 3 统计数字/" class="archive-article-date">
+  	<time datetime="2018-03-01T12:28:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  个人网站成功搭建了，在今后的日子里会在这里记录自己技术和生活中的心路历程，共勉。</p>
+        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>计算数字k在0到n中的出现的次数，k可能是0~9的一个值。<br><br>例如n=12，k=1，在 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]，我们发现1出现了5次 (1, 10, 11, 12)</p>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>这道题方法很简单，循环一组数，将每个数分解成位（个，十，百位…），然后与目标数字进行对比统计。<br>代码如下：</p>
+<pre><code>public class Solution {
+    /*
+     * @param : An integer
+     * @param : An integer
+     * @return: An integer denote the count of digit k in 1..n
+     */
+    public int digitCounts(int k, int n) {
+        // write your code here
+        int sum = 0;
+        int temp;
+        int m;
 
+        if(k == 0 ){
+            sum++;
+        }
+        for(int i = 0; i &lt;= n ; i++){
+            temp = i;
+            while(temp &gt; 0){
+                m = temp % 10;
+                temp = temp / 10;
+                if(k == m){
+                    sum++;
+                }
+            }
+        }      
+           return sum;
+    }
+};
+</code></pre>
       
 
       
@@ -209,7 +238,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">建站</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">刷题</a>
         		</li>
       		
 		</ul>
@@ -265,7 +294,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/17/博客开通/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/03/01/Lintode 3 统计数字/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -279,18 +308,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/07/17/搭建博客的一些问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          搭建博客的一些问题
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/07/14/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2018/02/28/Lintode 1 无符号相加/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LintCode 第一题 不使用+求两整数和</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -320,7 +340,7 @@
   
 
   
-  <div id="SOHUCS" sid="博客开通" ></div> 
+  <div id="SOHUCS" sid="Lintode 3 统计数字" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "true"; 
