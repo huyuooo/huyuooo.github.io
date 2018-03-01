@@ -158,7 +158,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/01/Lintode 4 丑数2/">LintCode 第三题 丑数2</a>
+      <a class="article-title" href="/2018/03/01/Lintode 4 丑数2/">LintCode 第四题 丑数2</a>
     </h1>
   
 
@@ -178,64 +178,10 @@
 <li>首先除2，直到不能整除为止; <br></li>
 <li>然后除5到不能整除为止;    <br></li>
 <li>然后除3直到不能整除为止;  <br></li>
-<li><p>最终判断剩余的数字是否为1，如果是1则为丑数，否则不是丑数。 <br></p>
-<h3 id="解法一-（过于复杂）"><a href="#解法一-（过于复杂）" class="headerlink" title="解法一 （过于复杂）"></a>解法一 （过于复杂）</h3><p>根据丑数的判断方法，以第n个丑数为循环条件，依次判断。如果n比较大的情况下，时间复杂度不满足要求。代码如下：</p>
-<pre><code>int n = 10;    
-int temp;
-int result;
-int lastNo = 0;  
-int i = 0;  
-int j = 0;  
-
-while(i &lt; n){
-    j++;
-    result = j;
-    temp = j;
-    while(temp % 2 == 0) {
-        temp = temp / 2;
-    }
-    while(temp % 5 == 0) {
-        temp = temp / 5;
-    }
-    while(temp % 3 == 0) {
-        temp = temp / 3;
-    }
-    if (temp == 1) {
-        //System.out.print(result + &quot; &quot;);
-        i ++ ;
-        if (i == n) {
-            lastNo = result;
-        }
-    }
-</code></pre><h3 id="解法二-（正解）"><a href="#解法二-（正解）" class="headerlink" title="解法二 （正解）"></a>解法二 （正解）</h3><p>参考链接：<a href="http://blog.csdn.net/leex_brave/article/details/51766194" target="_blank" rel="external">http://blog.csdn.net/leex_brave/article/details/51766194</a> <br><br>总结规律发现，后一个丑数都可以由之前的丑数乘（2,3,5）所得到，提取第一个大于现有最大丑数的数，变为最新的丑数。<br>最终代码如下：</p>
-<p> import java.util.ArrayList;<br> public class Solution {</p>
-<pre><code>/**
- * @param n: An integer
- * @return: the nth prime number as description.
- */
-public int nthUglyNumber(int n) {
-    // write your code here
-    if(n&lt;=0){
-        return 0;
-    }
-    ArrayList&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();
-    list.add(1);
-    int i2=0, i3=0, i5=0;
-    while(list.size() &lt; n){
-        int m2 = list.get(i2) * 2;
-        int m3 = list.get(i3) * 3;
-        int m5 = list.get(i5) * 5;
-        int min = Math.min(m2, Math.min(m3,m5));
-        list.add(min);
-        if(min == m2) i2++;
-        if(min == m3) i3++;
-        if(min == m5) i5++;
-    }
-    return list.get(n-1);
-}
-</code></pre><p> }</p>
+<li>最终判断剩余的数字是否为1，如果是1则为丑数，否则不是丑数。 <br><h3 id="解法一-（过于复杂）"><a href="#解法一-（过于复杂）" class="headerlink" title="解法一 （过于复杂）"></a>解法一 （过于复杂）</h3>根据丑数的判断方法，以第n个丑数为循环条件，依次判断。如果n比较大的情况下，时间复杂度不满足要求。代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">int n = 9;    // 第n个丑数</div><div class="line">int temp;</div><div class="line">int result;</div><div class="line">int lastNo = 0;  </div><div class="line">int i = 0;  //丑数 个数</div><div class="line">int j = 0;  // 循环数</div><div class="line"></div><div class="line">while(i &lt; n)&#123;</div><div class="line">	j++;</div><div class="line">	result = j;</div><div class="line">	temp = j;</div><div class="line">	while(temp % 2 == 0) &#123;</div><div class="line">		temp = temp / 2;</div><div class="line">	&#125;</div><div class="line">	while(temp % 5 == 0) &#123;</div><div class="line">		temp = temp / 5;</div><div class="line">	&#125;</div><div class="line">	while(temp % 3 == 0) &#123;</div><div class="line">		temp = temp / 3;</div><div class="line">	&#125;</div><div class="line">	if (temp == 1) &#123;</div><div class="line">		//System.out.print(result + &quot; &quot;);</div><div class="line">		i ++ ;</div><div class="line">		if (i == n) &#123;</div><div class="line">			lastNo = result;</div><div class="line">		&#125;</div><div class="line">	&#125;			</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
+<h3 id="解法二-（正解）"><a href="#解法二-（正解）" class="headerlink" title="解法二 （正解）"></a>解法二 （正解）</h3><p>参考链接：<a href="http://blog.csdn.net/leex_brave/article/details/51766194" target="_blank" rel="external">http://blog.csdn.net/leex_brave/article/details/51766194</a> <br><br>总结规律发现，后一个丑数都可以由之前的丑数乘（2,3,5）所得到，提取第一个大于现有最大丑数的数，变为最新的丑数。<br>最终代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">import java.util.ArrayList; </div><div class="line">    public class Solution &#123;</div><div class="line">    /**</div><div class="line">     * @param n: An integer</div><div class="line">     * @return: the nth prime number as description.</div><div class="line">     */</div><div class="line">    public int nthUglyNumber(int n) &#123;</div><div class="line">        // write your code here</div><div class="line">        if(n&lt;=0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        ArrayList&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();</div><div class="line">        list.add(1);</div><div class="line">        int i2=0, i3=0, i5=0;</div><div class="line">        while(list.size() &lt; n)&#123;</div><div class="line">            int m2 = list.get(i2) * 2;</div><div class="line">            int m3 = list.get(i3) * 3;</div><div class="line">            int m5 = list.get(i5) * 5;</div><div class="line">            int min = Math.min(m2, Math.min(m3,m5));</div><div class="line">            list.add(min);</div><div class="line">            if(min == m2) i2++;</div><div class="line">            if(min == m3) i3++;</div><div class="line">            if(min == m5) i5++;</div><div class="line">        &#125;</div><div class="line">        return list.get(n-1);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
 
       
 
@@ -1221,15 +1167,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">J2EE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
               <li class="article-tag-list-item">
